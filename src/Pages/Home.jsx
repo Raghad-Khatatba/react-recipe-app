@@ -7,11 +7,9 @@ import Footer from '../Components/Footer/Footer'
 export default function Home() {
   return (
     <>
-    <Nav />
     <Header />
     <About />
     <Resume />
-    <Footer />
     </>
   )
 }
