@@ -1,7 +1,16 @@
-import React from 'react'
+// Ruselt.js
+import React from "react";
+import Card from "../Card/Card";
+import "./ruselt.css";
 
-export default function Ruselt() {
+export default function Ruselt({ searchResults }) {
   return (
-    <div>Ruselt</div>
-  )
+    <section className="result">
+      <div className="result-cards">
+        {searchResults.map((recipe , index) => (
+          <Card key={index} recipe={recipe} like={true} />
+        ))}
+      </div>
+    </section>
+  );
 }

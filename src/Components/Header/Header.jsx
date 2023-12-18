@@ -20,7 +20,7 @@ export default function Header() {
             Simply Recipes is a trusted resource for home cooks with more than
             3,000 tested recipes, guides, and meal plans.
           </p>
-          <button style={{ all: "unset" }} className="btn1" onClick={handleButtonClick}>Find a recipe Now!</button>
+          <button className="btn1" onClick={handleButtonClick}>Find a recipe Now!</button>
         </div>
       </div>
     </header>

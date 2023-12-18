@@ -36,9 +36,9 @@
   color: white;
   border: 1px solid rgb(80, 68, 68);
   transition: 0.2s;
-  box-shadow: 1px 1px 20px rgb(82, 79, 79);
+  box-shadow: 1px 1px 20px rgb(134, 125, 125);
   font-weight: bold;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .btn1:hover {
