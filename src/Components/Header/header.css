@@ -28,7 +28,7 @@
   line-height: 1.7rem;
   font-weight: 600;
 }
-button {
+.btn1 {
   background-color: #8e7754;
   padding: 10px;
   justify-content: center;
@@ -41,7 +41,7 @@ button {
   margin-top: 50px;
 }
 
-button:hover {
+.btn1:hover {
   background-color: #a78865;
   box-shadow: 1px 1px 40px rgb(61, 58, 58);
   color: #ecd7b6;
