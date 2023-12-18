@@ -1,6 +1,6 @@
 import React from 'react'
 import Home from './Pages/Home'
-import Search from './Pages/Search'
+import Search from './Pages/SearchPage'
 import Favorite from './Pages/Favorite'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './Components/Layout/Layout'
