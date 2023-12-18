@@ -7,8 +7,8 @@ export default function Ruselt({ searchResults }) {
   return (
     <section className="result">
       <div className="result-cards">
-        {searchResults.map((recipe) => (
-          <Card key={recipe.id} recipe={recipe} like={true} />
+        {searchResults.map((recipe , index) => (
+          <Card key={index} recipe={recipe} like={true} />
         ))}
       </div>
     </section>
