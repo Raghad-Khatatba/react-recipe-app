@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import Ruselt from "../Ruselt/Ruselt";
+import apiKey from "../api/Key";
 import "./search.css";
-
 
 export default function Search() {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [noResults, setNoResults] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e) => {
@@ -19,15 +18,13 @@ export default function Search() {
       setLoading(true);
 
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=684e5784b0184b8ca8ca75da8ef075e1`
+        `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}`
       );
 
       const results = response.data.results;
       setSearchResults(results);
-      setNoResults(results.length === 0);
     } catch (error) {
       console.error("Error fetching recipes:", error);
-      setNoResults(true);
     } finally {
       setLoading(false);
     }
@@ -75,12 +72,12 @@ export default function Search() {
       </h1>
       {loading ? (
         <p className="text-center text-white font-weight-bold">Loading...</p>
-      ) : noResults ? (
+      ) : searchResults.length === 0 ? (
         <p className="text-center text-white font-weight-bold">
-          No results found. Please try another search term.
+          No results found.
         </p>
       ) : (
-        searchResults.length > 0 && <Ruselt searchResults={searchResults} />
+        <Ruselt searchResults={searchResults} />
       )}
     </>
   );
