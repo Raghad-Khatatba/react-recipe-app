@@ -1,10 +1,10 @@
 // Card.js
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaHeart } from 'react-icons/fa';
-import { FaTrash } from 'react-icons/fa';
-import Swal from 'sweetalert2';
-import './card.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
+import "./card.css";
 
 export default function Card({ recipe, trash, like, onDelete }) {
   const { id, title, image } = recipe;
@@ -21,13 +21,15 @@ export default function Card({ recipe, trash, like, onDelete }) {
   }, [like]);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const isRecipeLiked = storedFavorites.some((favorite) => favorite.id === id);
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const isRecipeLiked = storedFavorites.some(
+      (favorite) => favorite.id === id
+    );
     setIsLiked(isRecipeLiked);
   }, [id]);
 
   const handleLikeClick = () => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     if (isLiked) {
       showAlreadyLikedAlert();
@@ -35,7 +37,7 @@ export default function Card({ recipe, trash, like, onDelete }) {
     }
 
     const updatedFavorites = [...storedFavorites, { id, title, image }];
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     setIsLiked(true);
 
     showLikeAlert();
@@ -49,7 +51,7 @@ export default function Card({ recipe, trash, like, onDelete }) {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         onDelete(id);
@@ -65,10 +67,10 @@ export default function Card({ recipe, trash, like, onDelete }) {
   };
 
   const showLikeAlert = () => {
-    const alertText = 'Added to favorites';
+    const alertText = "Added to favorites";
 
     Swal.fire({
-      icon: 'success',
+      icon: "success",
       title: alertText,
       showConfirmButton: false,
       timer: 2000,
@@ -76,10 +78,10 @@ export default function Card({ recipe, trash, like, onDelete }) {
   };
 
   const showAlreadyLikedAlert = () => {
-    const alertText = 'This recipe is already in favorites';
+    const alertText = "This recipe is already in favorites";
 
     Swal.fire({
-      icon: 'info',
+      icon: "info",
       title: alertText,
       showConfirmButton: false,
       timer: 2000,
@@ -87,25 +89,29 @@ export default function Card({ recipe, trash, like, onDelete }) {
   };
 
   return (
-    <div className='card1'>
-      {image ? (
-        <img src={image} alt={title} />
-      ) : (
-        <p>Image not available</p>
-      )}
+    <div className="card1">
+      {image ? <img src={image} alt={title} /> : <p>Image not available</p>}
       <div className="box">
-        <h4 className="title">{title}</h4>
-        <Link to={`/details/${id}`} className="btn border border-black rounded-pill text-white">
+        <p className="title">{title}</p>
+        <Link
+          to={{ pathname: `/details/${id}`}}
+          className="btn border border-black rounded-pill text-white"
+        >
           Show more
         </Link>
+
         <button
-          style={{all:"unset"}} className={`heart-btn ${isLiked ? 'text-danger' : 'text-white'} ${showLiked ? '' : 'd-none'}`}
+          style={{ all: "unset" }}
+          className={`heart-btn ${isLiked ? "text-danger" : "text-white"} ${
+            showLiked ? "" : "d-none"
+          }`}
           onClick={handleLikeClick}
         >
-          <FaHeart className='heart' size={22} />
+          <FaHeart className="heart" size={22} />
         </button>
         <button
-           style={{all:"unset"}}  className={`trash-btn text-danger ${showTrash ? '' : 'd-none'}`}
+          style={{ all: "unset" }}
+          className={`trash-btn text-danger ${showTrash ? "" : "d-none"}`}
           onClick={handleTrashClick}
         >
           <FaTrash size={22} />
