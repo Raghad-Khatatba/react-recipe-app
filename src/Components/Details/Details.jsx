@@ -18,48 +18,26 @@ export default function Details() {
     navigate(-1);
   };
   useEffect(() => {
-    const returnDetails = async (e) => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const detailsResponse = await axios.get(
           `https://api.spoonacular.com/recipes/${id}/summary?apiKey=${apiKey}`
         );
+        setDetals(detailsResponse.data);
 
-        const results = response.data;
-        setDetals(results);
-      } catch (error) {
-        console.error("Error fetching recipes:", error);
-      }
-    };
-    returnDetails();
-  }, [id]);
-
-  useEffect(() => {
-    const returnInfo = async () => {
-      try {
-        const response = await axios.get(
+        const infoResponse = await axios.get(
           `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`
         );
-
-        const { title, image } = response.data;
+        const { title, image } = infoResponse.data;
         setInfo({ title, image });
-      } catch (error) {
-        console.error("Error fetching recipe information:", error);
-      }
-    };
 
-    returnInfo();
-  }, [id]);
-
-  useEffect(() => {
-    const fetchSimilarRecipes = async () => {
-      try {
-        const response = await axios.get(
+        const similarResponse = await axios.get(
           `https://api.spoonacular.com/recipes/${id}/similar?apiKey=${apiKey}`
         );
-        const data = response.data;
-        setSimilerResult(data);
+        const similarData = similarResponse.data;
+        setSimilerCard([]);
 
-        const detailsPromises = data.map(async (similarRecipe) => {
+        const detailsPromises = similarData.map(async (similarRecipe) => {
           const detailsResponse = await axios.get(
             `https://api.spoonacular.com/recipes/${similarRecipe.id}/information?apiKey=${apiKey}`
           );
@@ -69,11 +47,11 @@ export default function Details() {
         const detailsResults = await Promise.all(detailsPromises);
         setSimilerCard(detailsResults);
       } catch (error) {
-        console.error("Error fetching similar recipes:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchSimilarRecipes();
+    fetchData();
   }, [id]);
 
   return (
