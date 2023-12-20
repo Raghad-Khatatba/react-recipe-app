@@ -6,8 +6,8 @@
     rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0.05)
   );
-  width: 240px;
-  height: 400px;
+  width: 250px;
+  height: auto;
 }
 .card1:hover {
   border: 1px solid rgb(123, 168, 236);
@@ -26,11 +26,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: auto;
 }
 .card1 .box .title {
   color: rgb(244 244 245);
   text-transform: capitalize;
   margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 500;
 }
 .card1 .box .supTitle {
   color: rgb(161 161 170);

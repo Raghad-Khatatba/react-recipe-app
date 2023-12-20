@@ -5,6 +5,7 @@ import Favorite from './Pages/Favorite'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './Components/Layout/Layout'
 import NotFound from './Components/NotFound/NotFound'
+import Details from './Components/Details/Details'
 
 let routers = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ let routers = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'search', element: <Search /> },
       { path: 'favorite', element: <Favorite /> },
+      { path: 'details/:id', element: <Details /> },
       { path: '*', element: <NotFound /> },
     ],
   },
