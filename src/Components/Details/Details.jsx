@@ -72,7 +72,7 @@ export default function Details() {
             <div className="col-12 col-md-6 text-white recipeD">
               <h4 className="my-2">{details.title}</h4>
               <h5 className="my-2">Recipes:</h5>
-              <p className="my-2">{details.summary}</p>
+              <p className="my-2" dangerouslySetInnerHTML={{ __html: details.summary}} ></p>
             </div>
           )}
         </div>
